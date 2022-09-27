@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import FeedbackList from "./components/FeedbackList";
+import FeedbackStats from "./components/FeedbackStats";
 import FeedbackData from "./data/FeedbackData";
+
 
 //JSX- allow to return html element | need only one parent element to return
 function App(){
@@ -19,6 +21,7 @@ function App(){
             <Header />
             {/* we can either use <div> of <>(fragment) to wrap the element */}
             <div className='container'>
+                <FeedbackStats feedback={feedback}/>
                 <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
             </div> 
         </>
