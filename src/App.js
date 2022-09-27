@@ -1,10 +1,13 @@
 import { useState } from "react";
-import {v4 as uuidv4} from 'uuid' 
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {v4 as uuidv4} from 'uuid'; 
 import Header from "./components/Header";
 import FeedbackList from "./components/FeedbackList";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
 import FeedbackData from "./data/FeedbackData";
+import AboutPage from "./components/pages/AboutPage";
+import AboutIconLink from "./components/AboutIconLink";
 
 
 //JSX- allow to return html element | need only one parent element to return
@@ -26,15 +29,26 @@ function App(){
     }
 
     return (
-        <>
+        <Router>
             <Header />
             {/* we can either use <div> of <>(fragment) to wrap the element */}
             <div className='container'>
-                <FeedbackForm handleAdd ={addFeedback}/>
-                <FeedbackStats feedback={feedback}/>
-                <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
+                <Routes>
+                    <Route exact path="/" element={
+                        <>
+                            <FeedbackForm handleAdd ={addFeedback}/>
+                            <FeedbackStats feedback={feedback}/>
+                            <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
+                            <AboutIconLink/>
+                        </>
+                    }>
+                    </Route>
+
+                    <Route path="/about" element={<AboutPage/>}/>
+                    
+                </Routes>
             </div> 
-        </>
+        </Router>
     )
 }
 
