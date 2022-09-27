@@ -7,13 +7,19 @@ import FeedbackData from "./data/FeedbackData";
 function App(){
     //app level state
     const [feedback, setFeedback] = useState(FeedbackData);
-    
+    const deleteFeedback = (id) =>{
+        if(window.confirm('Confirm deletion?')){
+            //filter the seleted id out of feedback array
+            setFeedback(feedback.filter((item) => item.id !== id))
+        }
+    }
+
     return (
         <>
             <Header />
             {/* we can either use <div> of <>(fragment) to wrap the element */}
             <div className='container'>
-                <FeedbackList feedback={feedback}/>
+                <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
             </div> 
         </>
     )
