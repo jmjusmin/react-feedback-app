@@ -8,7 +8,7 @@ import FeedbackForm from "./components/FeedbackForm";
 import FeedbackData from "./data/FeedbackData";
 import AboutPage from "./components/pages/AboutPage";
 import AboutIconLink from "./components/AboutIconLink";
-
+import {FeedbackProvider} from './context/FeedbackContext'
 
 //JSX- allow to return html element | need only one parent element to return
 function App(){
@@ -29,6 +29,7 @@ function App(){
     }
 
     return (
+        <FeedbackProvider>
         <Router>
             <Header />
             {/* we can either use <div> of <>(fragment) to wrap the element */}
@@ -49,6 +50,7 @@ function App(){
                 </Routes>
             </div> 
         </Router>
+        </FeedbackProvider>
     )
 }
 
